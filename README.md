@@ -1,6 +1,14 @@
 ### my fish-shell dotfiles
 
-untested. only for backup & reference
+untested. only for personal backup & reference
+
+### usage 
+
+```sh
+mv ~/.config/fish ~/.config/fish.bak
+
+git clone git@github.com:mcfog/dotfiles-fish.git ~/.config/fish
+```
 
 ### related homebrew formulas
 
