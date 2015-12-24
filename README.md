@@ -14,8 +14,10 @@ git clone git@github.com:mcfog/dotfiles-fish.git ~/.config/fish
 
 + fish
 + fasd
++ fzf
 + nvm
 + thefuck
++ direnv
 
 ### other 
 
