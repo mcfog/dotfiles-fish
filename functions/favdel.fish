@@ -1,6 +1,8 @@
 function favdel
-  if grep (pwd)" #" ~/.cd-bookmark > /dev/null
-    grep -v (pwd)" #" ~/.cd-bookmark > ~/.cd-bookmark
+  if grep "$PWD #" ~/.cd-bookmark > /dev/null
+    mv ~/.cd-bookmark ~/.cd-bookmark.old
+    grep -v "$PWD #" ~/.cd-bookmark.old > ~/.cd-bookmark
+    echo "bookmark deleted"
     return 0
   end
 
