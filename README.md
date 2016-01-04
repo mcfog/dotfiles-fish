@@ -52,6 +52,15 @@ if you feel `jf<enter>` is not fast enough, you may add key binding entry to `fu
 bind \ej 'jf' 'commandline -f repaint'
 ```
 
+#### jh
+
+fuzzy history jump. try jump around serveral place and `jh` or `alt+h`
+
+key binding
+```sh
+bind \eh 'jh' 'commandline -f repaint'
+```
+
 #### copypwd
 
 ```fish
