@@ -72,5 +72,5 @@ end
 
 ### other 
 
-+ git alias from [git plugin of oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
++ [git abbr](https://gist.github.com/mcfog/078c2a8ab6fd3d2158f3) from [git plugin of oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
 + [phpbrew](phpbrew.github.io/phpbrew/)
