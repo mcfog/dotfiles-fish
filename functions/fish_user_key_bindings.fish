@@ -1,4 +1,4 @@
 
 fzf_key_bindings
 
-bind \ef 'jf' 'commandline -f repaint'
+bind \ej 'jf' 'commandline -f repaint'

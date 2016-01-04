@@ -49,7 +49,7 @@ bookmark added
 if you feel `jf<enter>` is not fast enough, you may add key binding entry to `functions/fish_user_keybindings`
 
 ```sh
-bind \ef 'jf' 'commandline -f repaint'
+bind \ej 'jf' 'commandline -f repaint'
 ```
 
 #### copypwd
