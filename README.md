@@ -70,6 +70,22 @@ function copypwd --description "copy \$PWD to clipboard. powered by `pbcopy` the
 end
 ```
 
+#### copyhash
+
+```fish
+function copyhash  --description "copy current git commit hash to clipboard. powered by `pbcopy` the clipboard utility for osx"
+  git rev-parse HEAD | tr -d '\n' | pbcopy ; and echo "copied: "(pbpaste)
+end
+```
+
+#### cdf
+
+```fish
+function cdf --description "cd into latest finder path" 
+  cd (osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')
+end
+```
+
 ### other 
 
 + [git abbr](https://gist.github.com/mcfog/078c2a8ab6fd3d2158f3) from [git plugin of oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
