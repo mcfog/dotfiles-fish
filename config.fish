@@ -1,13 +1,11 @@
-#fundle plugin tuvistavie/oh-my-fish-core
-
 #for nvm
 fundle plugin oh-my-fish/plugin-foreign-env
 
-#fundle plugin derekstavis/plugin-nvm
-#fundle plugin edc/bass
-
 #provides `d` `...` etc
 fundle plugin tuvistavie/fish-fastdir
+
+#getopts function
+fundle plugin fisherman/getopts
 
 fundle init
 
