@@ -1,7 +1,8 @@
+function fish_user_key_bindings
+  fzf_key_bindings
 
-fzf_key_bindings
-
-bind \ej 'jf' 'commandline -f repaint'
-bind \eh 'jh' 'commandline -f repaint'
-bind \ew 'echo' 'copypwd' 'commandline -f repaint'
-bind \ea 'echo' 'copyhash' 'commandline -f repaint'
+  bind \ej 'jf' 'commandline -f repaint'
+  bind \eh 'jh' 'commandline -f repaint'
+  bind \ew 'echo' 'copypwd' 'commandline -f repaint'
+  bind \ea 'echo' 'copyhash' 'commandline -f repaint'
+end
