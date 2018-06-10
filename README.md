@@ -21,6 +21,16 @@ git clone git@github.com:mcfog/dotfiles-fish.git ~/.config/fish
 
 ### original stuff
 
+#### j,
+
+parse you `~/.ssh/config`, select with `fzf` and ssh onto it
+
+key binding
+```
+  bind \e, 'j, -n'
+```
+
+
 #### jf
 
 inspired by <http://dmitryfrank.com/articles/shell_shortcuts>

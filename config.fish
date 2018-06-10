@@ -1,11 +1,10 @@
+set -gx  LC_ALL en_US.UTF-8  
+
 #for nvm
 fundle plugin oh-my-fish/plugin-foreign-env
 
 #provides `d` `...` etc
 fundle plugin tuvistavie/fish-fastdir
-
-#getopts function
-fundle plugin fisherman/getopts
 
 fundle init
 
