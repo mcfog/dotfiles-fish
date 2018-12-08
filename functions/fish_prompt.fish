@@ -81,6 +81,11 @@ function fish_prompt --description 'Write out the prompt'
     echo -n (prompt_pwd)
     set_color normal
 
+    if set -q HTTP_PROXY
+        echo -n " 🚀 "
+    end
+
+    # VCS
     printf '%s ' (__fish_vcs_prompt)
 
     if not test $last_status -eq 0

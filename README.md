@@ -95,6 +95,10 @@ function cdf --description "cd into latest finder path"
 end
 ```
 
+#### proxy
+
+print HTTP proxy being used, or set them (use direct to unset)
+
 ### other 
 
 + [git abbr](https://gist.github.com/mcfog/078c2a8ab6fd3d2158f3) from [git plugin of oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
