@@ -1,4 +1,3 @@
-function npm
-  fenv source ~/.nvm/nvm.sh
-  command npm $argv
+function npm -d "javascript package manager" -w npm
+    __fnm_run_bin_as "npm" $argv
 end
