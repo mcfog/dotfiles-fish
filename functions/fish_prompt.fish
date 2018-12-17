@@ -92,7 +92,7 @@ function fish_prompt --description 'Write out the prompt'
 
 	set_color yellow
 	if set -q ECR_HOST
-		echo [(kubectl config current-context)]
+		echo [(ksvcname)@(kubectl config current-context)]
 	end
 	set_color normal
 
