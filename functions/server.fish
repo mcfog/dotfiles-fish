@@ -17,7 +17,7 @@ function server -d "connect to server"
 
   if test ! -f $cache_path
     echo "fetching server list..."
-    aws --profile=$profile ec2 describe-instances | jq -r '.Reservations[] | .Instances[] | {id:.InstanceId,ip:(.NetworkInterfaces[0].PrivateIpAddress), name:((.Tags[]|select(.Key=="Name").Value) // "unnamed")} | [":"+.name, "\'"+.ip, "#"+.id] |@tsv' | sort  > $cache_path".swp"
+    aws --profile=$profile ec2 describe-instances | jq -r '.Reservations[] | .Instances[] | {id:.InstanceId,ip:(.NetworkInterfaces[0].PrivateIpAddress), name:((.Tags[]|select(.Key=="Name").Value) // "unnamed")} | [":"+.name, .ip, .id] |@tsv' | sort  > $cache_path".swp"
 
     if test $status -ne 0
       rm $cache_path".swp"
