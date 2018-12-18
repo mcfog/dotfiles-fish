@@ -17,20 +17,22 @@ function server -d "connect to server"
 
   if test ! -f $cache_path
     echo "fetching server list..."
-    aws --profile=$profile ec2 describe-instances | jq -r '.Reservations[] | .Instances[] | {id:.InstanceId,ip:(.NetworkInterfaces[0].PrivateIpAddress), name:((.Tags[]|select(.Key=="Name").Value) // "unnamed")} | [":"+.name, .ip, .id] |@tsv' | sort  > $cache_path
+    aws --profile=$profile ec2 describe-instances | jq -r '.Reservations[] | .Instances[] | {id:.InstanceId,ip:(.NetworkInterfaces[0].PrivateIpAddress), name:((.Tags[]|select(.Key=="Name").Value) // "unnamed")} | [":"+.name, "\'"+.ip, "#"+.id] |@tsv' | sort  > $cache_path".swp"
 
     if test $status -ne 0
-      rm $cache_path
+      rm $cache_path".swp"
 
       set_color red
       echo "failed"
       set_color normal
 
       return -1
-    end 
+    end
+
+    mv $cache_path".swp" $cache_path
   end
 
-  set target (cat $cache_path | fzf -e +m  -q "$query" -0 -1)
+  set target (cat $cache_path | fzf +m -e -q "$query" -0 -1)
   if test -z $target
     echo "no target server, bye"
     return
