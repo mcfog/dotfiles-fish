@@ -13,7 +13,7 @@ function server -d "connect to server"
 
   set cache_path /tmp/.server_$profile.tsv
 
-  find $cache_path -mtime +6h -exec rm '{}' \; ^ /dev/null > /dev/null
+  find $cache_path -mtime +7d -exec rm '{}' \; ^ /dev/null > /dev/null
 
   if test ! -f $cache_path
     echo "fetching server list..."
