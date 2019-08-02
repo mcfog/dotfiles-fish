@@ -48,5 +48,9 @@ function server -d "connect to server"
   set_color normal
   echo " ("$ip")..."
 
-  aws --profile=$profile ssm start-session --target=$id
+  stty sane
+  #aws --profile=$profile ssm start-session --target=$id
+  ssh -t $aws_user@$ip sudo su - ubuntu
+  echo
+  commandline -f repaint
 end
