@@ -53,4 +53,5 @@ function server -d "connect to server"
   ssh -t $aws_user@$ip sudo su - ubuntu
   echo
   commandline -f repaint
+  stty sane
 end

@@ -92,20 +92,23 @@ function fish_prompt --description 'Write out the prompt'
 
     set_color grey
     echo -n "["
-	set_color yellow
-	echo -n (ksvcname)
-    set_color grey
-    echo -n "|"
+
+    set -l k8s_clr
+	if test (ksvcname) = "-"
+        set k8s_clr brblack
+    else
+        set k8s_clr yellow
+    end
 
     set k8s_ctx (kubectl config current-context)
     if test $k8s_ctx = "docker-for-desktop"
-        set_color yellow
+        set_color $k8s_clr
     else
-        set_color -ou yellow
+        set_color -ou $k8s_clr
     end
     echo -n $k8s_ctx
-
     set_color normal
+
     set_color grey
     echo -n "]"
 	set_color normal
