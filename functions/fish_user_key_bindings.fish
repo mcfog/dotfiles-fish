@@ -9,4 +9,5 @@ function fish_user_key_bindings
   bind \eP _pp
   bind \ew 'echo' 'copypwd' 'commandline -f repaint'
   bind \ea 'echo' 'copyhash' 'commandline -f repaint'
+  bind \cf fzf-cd-widget
 end

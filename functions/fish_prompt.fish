@@ -1,4 +1,6 @@
 function fish_prompt --description 'Write out the prompt'
+    # Save our status
+    set -l last_pipestatus $pipestatus
 	set -l last_status $status
 
     if not set -q __fish_git_prompt_show_informative_status
@@ -89,35 +91,14 @@ function fish_prompt --description 'Write out the prompt'
     # VCS
     printf '%s ' (__fish_vcs_prompt)
 
-
-    set_color grey
-    echo -n "["
-
-    set -l k8s_clr
-	if test (ksvcname) = "-"
-        set k8s_clr brblack
-    else
-        set k8s_clr yellow
-    end
-
-    set k8s_ctx (kubectl config current-context)
-    if test $k8s_ctx = "docker-for-desktop"
-        set_color $k8s_clr
-    else
-        set_color -ou $k8s_clr
-    end
-    echo -n $k8s_ctx
-    set_color normal
-
-    set_color grey
-    echo -n "]"
-	set_color normal
-
     if not test $last_status -eq 0
         set_color $fish_color_error
     end
+
+    # status
+    echo -n -s (__fish_print_pipestatus "[" "] " "|" (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
+
     echo 
     echo -n "$suffix "
-
     set_color normal
 end

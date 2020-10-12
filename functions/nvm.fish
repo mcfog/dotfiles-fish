@@ -1,4 +1,4 @@
-set -g nvm_version 1.0.0
+set -g nvm_version 1.0.1
 
 function nvm -a cmd -d "Node.js version manager"
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
@@ -84,8 +84,8 @@ function _nvm_get_index
             NR > 1 && !/^v0\.[1-9]\./ {
                 split($1 = substr($1, 2), v, ".")
                 is_latest = NR == 2
-                is_lts = !(v[1] % 2)
-                alias = /^0/ ? "" : "lts|"(($10 = tolower($10)) == "-" ? prev : prev = $10)
+                alias = ($10 = tolower($10)) == "-" ? "" : "lts|"$10
+                is_lts = alias != ""
                 print $1, (/^0/ ? "-" : v[1]), v[1]"."v[2],
                     is_latest ? is_lts ? alias"|latest" : "latest" : is_lts ? alias : ""
             }
@@ -121,7 +121,7 @@ function _nvm_ls -a query
     ' <$index 2>/dev/null
 end
 
-function _nvm_use
+function _nvm_resolve_version
     set -l index (_nvm_get_index); or return
     set -l ver (command awk -v ver="$argv[1]" '
         BEGIN {
@@ -137,6 +137,17 @@ function _nvm_use
             exit
         }
     ' <$index 2>/dev/null)
+
+    if not set -q ver[1]
+        return 1
+    end
+
+    echo $ver
+end
+
+function _nvm_use
+    set -l index (_nvm_get_index); or return
+    set -l ver (_nvm_resolve_version $argv[1])
 
     if not set -q ver[1]
         echo "nvm: invalid version number or alias: \"$argv[1]\"" >&2
@@ -178,7 +189,7 @@ function _nvm_use
         echo "fetching $url" >&2
         command mkdir -p $target/$name
 
-        if not command curl --fail --progress-bar $url.tar.gz | command tar -xzf- -C $target/$name
+        if not command curl -L --fail --progress-bar $url.tar.gz | command tar -xzf- -C $target/$name
             command rm -rf $target
             echo "nvm: fetch error -- are you offline?" >&2
             return 1
@@ -197,7 +208,10 @@ function _nvm_use
     end
 
     if set -l root (_nvm_find_up (pwd) $nvm_file)
-        echo $argv[1] >$root/$nvm_file
+        read -l line <$root/$nvm_file
+        if test $ver != (_nvm_resolve_version $line)
+            echo $argv[1] >$root/$nvm_file
+        end
     end
 
     echo $ver >$nvm_config/version
