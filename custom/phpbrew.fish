@@ -1,1 +1,0 @@
-. ~/.phpbrew/phpbrew.fish
